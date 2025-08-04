@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open WebUI Docker compose.yml Creator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+    <header>
+        <div class="container">
+            <div class="header-left">
+                <a href="#" class="logo">
+                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                    <span class="logo-text">Internode.Info</span>
+                </a>
+<!-- 			
+                <nav>
+                    <a href="#">Server Configurator</a>
+                    <a href="#">Backup Guide</a>
+                    <a href="#">Guides</a>
+                </nav>
+ -->				
+            </div>
+            <div class="header-right">
+                <button id="theme-toggle-button" title="Toggle Theme">
+                    <svg id="theme-icon-light" class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    <svg id="theme-icon-dark" class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    <svg id="theme-icon-ultra-dark" class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 1 0 10 10"/><path d="M12 12a10 10 0 1 1-10-10 10 10 0 0 1 10 10Z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div>
+            <h1><a href="https://github.com/open-webui/" rel="noopener" target="_blank">Open WebUI </a>Docker compose.yml Creator</h1>
+            <p>Our configurator generates a Docker Compose file that you can use to set up and operate Open WebUI.</p>
+        </div>
+        
+        <div class="content-section quick-guide" style="margin-top: 1.5rem;">
+            <h2>Quick Guide</h2>
+            <ol>
+                <li>Install Docker and Docker Compose on your device. We recommend using <a href="https://docs.docker.com/get-docker/" rel="noopener" target="_blank">Docker Desktop</a>.</li>
+                <li>Configure your Open WebUI server using the options below.</li>
+                <li>Create a folder on your device and save the generated <kbd>compose.yml</kbd> file in it.</li>
+                <li>Open a terminal, navigate to that folder, and run <kbd>docker compose up -d</kbd> to start the server.</li>
+                <li>Open your browser and connect to <kbd>http://localhost:3000</kbd> (or your chosen port) to use Open WebUI.</li>
+            </ol>
+        </div>
+
+        <div class="content-section configurator-grid">
+            <div class="config-panel">
+                <h2>Configuration</h2>
+                <div class="config-tabs">
+                    <button class="tab-button active" data-tab="general">General</button>
+                    <button class="tab-button" data-tab="features">Features</button>
+                    <button class="tab-button" data-tab="advanced">Advanced</button>
+                </div>
+
+                <!-- FORM CONTENT (UNCHANGED) -->
+                <div id="tab-general" class="tab-content active">
+                    <div class="form-group">
+                        <label for="image-tag">Image Tag</label>
+                        <select id="image-tag" class="form-select">
+                            <option value="main">main (Recommended)</option>
+                            <option value="latest">latest</option>
+							<option value="ollama">ollama bundled</option>
+                            <option value="cuda">cuda</option>
+                            <option value="dev">dev branch</option>							
+                        </select>
+                        <small>Specifies the Docker image version to use.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="container-name">Container Name</label>
+                        <input type="text" id="container-name" class="form-input" value="open-webui">
+                        <small>A custom name for your Docker container.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="host-port">Host Port</label>
+                        <input type="number" id="host-port" class="form-input" value="3000">
+                        <small>The port on your machine that maps to the container's port 3000.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="ollama-url">Ollama Base URL</label>
+                        <input type="text" id="ollama-url" class="form-input" value="http://host.docker.internal:11434">
+                        <small>The URL of your running Ollama instance. <kbd>host.docker.internal</kbd> is for connecting to Ollama running on your host machine.</small>
+                    </div>
+                </div>
+                <div id="tab-features" class="tab-content">
+                    <div class="form-group">
+                        <label for="enable-signup" style="display:inline-block; margin-right: 1rem;">Enable User Sign-up</label>
+                        <label class="toggle-switch"><input type="checkbox" id="enable-signup" checked><span class="toggle-slider"></span></label>
+                        <small>Allow new users to register an account.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="require-auth" style="display:inline-block; margin-right: 1rem;">Require Authentication</label>
+                        <label class="toggle-switch"><input type="checkbox" id="require-auth" checked><span class="toggle-slider"></span></label>
+                        <small>If disabled, all users will be logged in as the default admin user.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="default-models">Default Models</label>
+                        <input type="text" id="default-models" class="form-input" placeholder="llama3,codegemma">
+                        <small>Comma-separated list of models to show by default. Leave empty to show all.</small>
+                    </div>
+                </div>
+                <div id="tab-advanced" class="tab-content">
+                    <div class="form-group">
+                        <label for="secret-key">WebUI Secret Key</label>
+                        <input type="text" id="secret-key" class="form-input" placeholder="Leave empty for auto-generation">
+                        <small>A secret key for signing sessions. If not provided, one will be generated on first start.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="memory-limit">Memory Limit (GB)</label>
+                        <div class="memory-slider-container">
+                            <input type="range" id="memory-limit" min="0" max="16" value="0" step="1">
+                            <span id="memory-value">None</span>
+                        </div>
+                        <small>Set a memory limit for the container. 0 means no limit.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="restart-policy">Restart Policy</label>
+                        <select id="restart-policy" class="form-select">
+                            <option value="unless-stopped">unless-stopped</option>
+                            <option value="always">always</option>
+                            <option value="no">no</option>
+                        </select>
+                        <small>Policy for restarting the container automatically.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="yaml-panel">
+                <div class="yaml-header">
+                    <h2>compose.yml</h2>
+                </div>
+                <div id="yaml-output-container">
+                    <code id="yaml-output"></code>
+                </div>
+                <div class="yaml-actions">
+                    <button id="download-button" class="action-button"> Download File </button>
+                    <button id="copy-button" class="action-button primary">
+                        <span class="copy-text">Copy code</span>
+                        <span class="copied-text">Copied!</span>
+                    </button>
+                </div>
+                <small style="text-align: center; margin-top: 1rem; color: var(--app-text-muted);">Note that only non-default values are added to the file to keep it concise.</small>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+             Internode.Info is not an official Open WebUI website and is not affiliated with the Open WebUI team.
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+
+</body>
+</html>

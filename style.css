@@ -1,0 +1,447 @@
+/* --- New Theme System based on provided CSS --- */
+:root {
+    /* Dark Theme (Default) */
+    --app-bg: #212121;
+    --app-surface: #2a2a2a;
+    --app-surface-hover: #333333;
+    --app-border: #404040;
+    --app-text-primary: #ffffff;
+    --app-text-secondary: #b0b0b0;
+    --app-text-muted: #808080;
+    --app-accent: #8b5cf6;
+    --app-accent-hover: #7c3aed;
+}
+
+[data-theme="light"] {
+    --app-bg: #f8fafc;
+    --app-surface: #ffffff;
+    --app-surface-hover: #f1f5f9;
+    --app-border: #e2e8f0;
+    --app-text-primary: #1e293b;
+    --app-text-secondary: #475569;
+    --app-text-muted: #64748b;
+}
+
+[data-theme="ultra-dark"] {
+    --app-bg: #0f0f0f;
+    --app-surface: #1a1a1a;
+    --app-surface-hover: #242424;
+    --app-border: #2a2a2a;
+    --app-text-primary: #f0f0f0;
+    --app-text-secondary: #a0a0a0;
+    --app-text-muted: #707070;
+    --app-accent: #9333ea;
+    --app-accent-hover: #7e22ce;
+}
+
+/* --- General Styles --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    background-color: var(--app-bg);
+    color: var(--app-text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+main {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+/* --- Header --- */
+header {
+    border-bottom: 1px solid var(--app-border);
+    background-color: var(--app-surface);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 4rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--app-text-primary);
+}
+
+.logo svg {
+    width: 32px;
+    height: 32px;
+    color: var(--app-accent);
+}
+
+.logo-text {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+nav a {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--app-text-secondary);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+nav a:hover {
+    background-color: var(--app-surface-hover);
+    color: var(--app-text-primary);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#theme-toggle-button {
+    background: none;
+    border: 1px solid var(--app-border);
+    color: var(--app-text-secondary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#theme-toggle-button:hover {
+    background-color: var(--app-surface-hover);
+    color: var(--app-text-primary);
+}
+#theme-toggle-button svg {
+    width: 20px;
+    height: 20px;
+}
+.theme-icon { display: none; }
+
+
+/* --- Content Sections --- */
+.content-section {
+    border: 1px solid var(--app-border);
+    background-color: var(--app-surface);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.25rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+p, .content-section li {
+    color: var(--app-text-secondary);
+}
+
+.quick-guide ol {
+    list-style-position: inside;
+    list-style-type: decimal;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+kbd {
+    background: var(--app-bg);
+    border: 1px solid var(--app-border);
+    color: var(--app-text-secondary);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+a {
+    color: var(--app-accent);
+    text-decoration: underline;
+}
+a:hover {
+    color: var(--app-accent-hover);
+    text-decoration: none;
+}
+
+/* --- Configurator Layout --- */
+.configurator-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.config-panel { padding: 1.5rem; }
+.yaml-panel { padding: 1.5rem; }
+
+.config-panel, .yaml-panel {
+    min-height: 500px;
+}
+
+/* --- Configuration Panel (Left) --- */
+.config-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--app-border);
+    margin-bottom: 1.5rem;
+}
+
+.tab-button {
+    padding: 0.75rem 1rem;
+    border: none;
+    background: none;
+    color: var(--app-text-muted);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+
+.tab-button:hover {
+    color: var(--app-text-primary);
+}
+
+.tab-button.active {
+    color: var(--app-accent);
+    border-bottom-color: var(--app-accent);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-group small {
+    display: block;
+    color: var(--app-text-muted);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.form-input, .form-select {
+    width: 100%;
+    background-color: var(--app-bg);
+    border: 1px solid var(--app-border);
+    color: var(--app-text-primary);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+.form-input:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--app-accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--app-accent) 20%, transparent);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--app-surface-hover);
+    border-radius: 20px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: var(--app-accent);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+}
+
+/* Range Slider */
+.memory-slider-container input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--app-border);
+    outline: none;
+    border-radius: 4px;
+}
+
+.memory-slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--app-accent);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.memory-slider-container input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--app-accent);
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}
+
+/* --- YAML Panel (Right) --- */
+#yaml-output-container {
+    flex-grow: 1;
+    background-color: var(--app-bg);
+    border: 1px solid var(--app-border);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow: auto;
+    font-family: monospace;
+    font-size: 0.875rem;
+    white-space: pre;
+    color: var(--app-text-secondary);
+}
+
+.yaml-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.action-button {
+    flex-grow: 1;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--app-border);
+    background-color: var(--app-surface-hover);
+    color: var(--app-text-primary);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.action-button:hover {
+    border-color: var(--app-text-secondary);
+}
+
+.action-button.primary {
+    background-color: var(--app-accent);
+    border-color: var(--app-accent);
+    color: white;
+}
+
+.action-button.primary:hover {
+    background-color: var(--app-accent-hover);
+    border-color: var(--app-accent-hover);
+}
+
+#copy-button .copy-text { display: inline; }
+#copy-button .copied-text { display: none; }
+#copy-button.copied .copy-text { display: none; }
+#copy-button.copied .copied-text { display: inline; }
+
+/* --- Footer --- */
+footer {
+    border-top: 1px solid var(--app-border);
+    background-color: var(--app-surface);
+    padding: 1.5rem 0;
+    font-size: 0.875rem;
+    color: var(--app-text-muted);
+    text-align: center;
+}
+
+
+/* --- Responsive Styles --- */
+@media (min-width: 768px) {
+    .configurator-grid {
+        flex-direction: row;
+    }
+    .config-panel {
+        flex: 1 1 50%;
+        border-right: 1px solid var(--app-border);
+    }
+    .yaml-panel {
+        flex: 1 1 50%;
+    }
+}
