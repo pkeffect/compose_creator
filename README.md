@@ -217,9 +217,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support & Community
 
-- **Issues**: [GitHub Issues](https://github.com/your-username/open-webui-composer/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/open-webui-composer/discussions)
-- **Documentation**: [Project Wiki](https://github.com/your-username/open-webui-composer/wiki)
+- **Issues**: [GitHub Issues](https://github.com/pkeffect/compose_creator/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/pkeffect/compose_creator/discussions)
 
 ---
 
@@ -227,6 +226,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ for the Open WebUI community**
 
-[⭐ Star this project](https://github.com/your-username/open-webui-composer) | [🐛 Report Bug](https://github.com/your-username/open-webui-composer/issues) | [💡 Request Feature](https://github.com/your-username/open-webui-composer/issues)
 
 </div>
