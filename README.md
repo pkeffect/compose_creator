@@ -80,7 +80,7 @@ php -S localhost:8000
 
 ## 🗺️ Project Roadmap
 
-### 📈 **Phase 1: Enhanced Core Features** *(v2.0 - Q2 2025)*
+### 📈 **Phase 1: Enhanced Core Features**
 
 #### 🔐 **Authentication & Security**
 - [ ] **OAuth Provider Wizard**: Google, Microsoft, GitHub, OIDC setup with guided configuration
@@ -100,7 +100,7 @@ php -S localhost:8000
 - [ ] **API Key Management**: Secure credential handling and rotation
 - [ ] **Model Configuration**: Default models, restrictions, and performance tuning
 
-### 🏢 **Phase 2: Enterprise Features** *(v3.0 - Q3 2025)*
+### 🏢 **Phase 2: Enterprise Features**
 
 #### 📊 **Deployment Patterns**
 - [ ] **Template Library**: Pre-configured deployment patterns
@@ -124,7 +124,7 @@ php -S localhost:8000
 - [ ] **Dependency Resolution**: Service startup order and dependencies
 - [ ] **Environment Testing**: Development, staging, production profiles
 
-### 🧠 **Phase 3: Intelligence & Automation** *(v4.0 - Q4 2025)*
+### 🧠 **Phase 3: Intelligence & Automation**
 
 #### 🧙‍♂️ **Smart Configuration**
 - [ ] **Setup Wizards**: Guided configuration for complex scenarios
@@ -144,7 +144,7 @@ php -S localhost:8000
 - [ ] **CLI Tool**: Command-line interface for automation and CI/CD
 - [ ] **Helm Charts**: Kubernetes deployment support
 
-### 🌟 **Phase 4: Ecosystem Integration** *(v5.0 - 2026)*
+### 🌟 **Phase 4: Ecosystem Integration**
 
 #### 🏭 **Enterprise Platform**
 - [ ] **Multi-Tenant Support**: Organization and team management
